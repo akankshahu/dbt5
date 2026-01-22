@@ -123,7 +123,6 @@ CPGSQLLoader<T>::Init()
 {
 	Connect();
 }
-
 template <typename T>
 void
 CPGSQLLoader<T>::Connect()
