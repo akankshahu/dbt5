@@ -79,8 +79,8 @@ public:
 		}
 
 		// FIXME: Have blind faith that this row of data was built correctly.
-		while (fgetc(p) != EOF)
-			;
+		// while (fgetc(p) != EOF)
+		//	;
 	}
 };
 

@@ -135,8 +135,9 @@ CPGSQLLoader<T>::Connect()
 		exit(1);
 	}
 	// FIXME: Have blind faith that psql connected ok.
-	while (fgetc(p) != EOF)
-		;
+	// Cannot read from a write-only pipe.
+	// while (fgetc(p) != EOF)
+	//	;
 
 	Copy();
 }
@@ -146,14 +147,14 @@ void
 CPGSQLLoader<T>::Copy()
 {
 	fprintf(p, "BEGIN;\n");
-	while (fgetc(p) != EOF)
-		;
+	// while (fgetc(p) != EOF)
+	//	;
 
 	fprintf(p, "COPY %s FROM STDIN WITH (DELIMITER '|', NULL '');\n",
 			m_szTable);
 	// FIXME: Have blind faith that COPY started correctly.
-	while (fgetc(p) != EOF)
-		;
+	// while (fgetc(p) != EOF)
+	//	;
 }
 
 //
@@ -180,14 +181,14 @@ CPGSQLLoader<T>::FinishLoad()
 	// End of the COPY.
 	fprintf(p, "\\.\n");
 	// FIXME: Have blind faith that COPY was successful.
-	while (fgetc(p) != EOF)
-		;
+	// while (fgetc(p) != EOF)
+	//	;
 
 	// COMMIT the COPY.
 	fprintf(p, "COMMIT;\n");
 	// FIXME: Have blind faith that COMMIT was successful.
-	while (fgetc(p) != EOF)
-		;
+	// while (fgetc(p) != EOF)
+	//	;
 }
 
 //
